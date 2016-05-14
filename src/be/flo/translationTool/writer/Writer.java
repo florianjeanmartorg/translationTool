@@ -1,6 +1,9 @@
 package be.flo.translationTool.writer;
 
 import be.flo.translationTool.model.FileInfo;
+import be.flo.translationTool.model.SourceInfo;
+import be.flo.translationTool.model.TranslationInfo;
+import be.flo.translationTool.util.Const;
 import be.flo.translationTool.util.FileUtil;
 
 import java.io.File;
@@ -16,17 +19,14 @@ import java.util.regex.Pattern;
  */
 public class Writer {
 
-    private static final String  FILE    = "/home/florian/idea/project/conf/";
-    private static final Pattern PATTENR = Pattern.compile("messages\\..*");
-
-    public void write(HashMap<FileInfo, Map<String, Boolean>> map) throws Exception {
+    public void write(SourceInfo sourceInfo,HashMap<FileInfo, Map<String, TranslationInfo>> map) throws Exception {
 
         //load translation file
-        File file = new File(FILE);
+        File file = new File(sourceInfo.getTranslationDirectory());
 
         if (file.isDirectory()) {
             for (File file1 : file.listFiles()) {
-                Matcher matcher = PATTENR.matcher(file1.getName());
+                Matcher matcher = sourceInfo.getTranslationPattern().matcher(file1.getName());
                 if (matcher.find()) {
                     //add
                     completeFile(file1, clone(map));
@@ -37,28 +37,19 @@ public class Writer {
             }
 
         } else {
-            throw new Exception(FILE + " is not a directory");
+            throw new Exception(sourceInfo.getTranslationDirectory() + " is not a directory");
         }
     }
 
-    private void completeFile(File file, HashMap<FileInfo, Map<String, Boolean>> map) throws Exception {
+    private void completeFile(File file, HashMap<FileInfo, Map<String, TranslationInfo>> map) throws Exception {
 
         String content = FileUtil.getString(file);
 
-
-        Pattern pattern = Pattern.compile("(\\n|^)((#)? *(--.+))=(.+)");
-
-        Matcher matcher = pattern.matcher(content);
-
-//        HashMap<String, KeyStatus> checkList = new HashMap<String, KeyStatus>();
-//
-//        while (matcher.find()) {
-//
-//        }
+        Pattern pattern = Pattern.compile("(\\n|^)((#)? *(--\\.[a-zA-Z0-9._-]+))=(.+)");
 
         Matcher matcher1 = Pattern.compile(".*\n").matcher(content);
 
-        Map<String, Boolean> newKey = new HashMap<String, Boolean>();
+        Map<String, TranslationInfo> newKey = new HashMap<String, TranslationInfo>();
 
         String previousLine = "";
 
@@ -69,8 +60,8 @@ public class Writer {
             if (line.equals("\n")) {
 
                 //insert last key
-                for (Map.Entry<String, Boolean> stringBooleanEntry : newKey.entrySet()) {
-                    if (stringBooleanEntry.getValue()) {
+                for (Map.Entry<String, TranslationInfo> stringBooleanEntry : newKey.entrySet()) {
+                    if (stringBooleanEntry.getValue().isFounded()) {
 
                         String s = stringBooleanEntry.getKey();
 
@@ -87,7 +78,7 @@ public class Writer {
             if (line.contains("##")) {
 
 
-                for (Map.Entry<FileInfo, Map<String, Boolean>> fileInfoListEntry : map.entrySet()) {
+                for (Map.Entry<FileInfo, Map<String, TranslationInfo>> fileInfoListEntry : map.entrySet()) {
                     if (line.contains(fileInfoListEntry.getKey().getName())) {
                         fileInfoListEntry.getKey().setFounded(true);
 
@@ -97,15 +88,23 @@ public class Writer {
                 }
             }
 
+            if(line.contains("--.email.invitation.body")){
+                int i = 0;
+            }
+
             Matcher matcher2 = pattern.matcher(line);
             if (matcher2.find()) {
                 String key = matcher2.group(4);
 
+                if(key.equals("--.email.invitation.body")){
+                    int i = 0;
+                }
+
                 //find equivalent in new keys
                 boolean founded = false;
-                for (Map<String, Boolean> stringBooleanMap : map.values()) {
+                for (Map<String, TranslationInfo> stringBooleanMap : map.values()) {
                     if (stringBooleanMap.containsKey(key)) {
-                        stringBooleanMap.put(key, false);
+                        stringBooleanMap.put(key, new TranslationInfo());
                         founded = true;
                         if ((matcher2.group(3) != null && matcher2.group(3).length() > 0)) {
                             content = content.replace(matcher2.group(), matcher2.group().replace("#", ""));
@@ -121,12 +120,12 @@ public class Writer {
 
         }
 
-        for (Map.Entry<FileInfo, Map<String, Boolean>> fileInfoListEntry : map.entrySet()) {
+        for (Map.Entry<FileInfo, Map<String, TranslationInfo>> fileInfoListEntry : map.entrySet()) {
             if (!fileInfoListEntry.getKey().isFounded()) {
 
                 boolean first = true;
-                for (Map.Entry<String, Boolean> stringBooleanEntry : fileInfoListEntry.getValue().entrySet()) {
-                    if (stringBooleanEntry.getValue()) {
+                for (Map.Entry<String, TranslationInfo> stringBooleanEntry : fileInfoListEntry.getValue().entrySet()) {
+                    if (stringBooleanEntry.getValue().isFounded()) {
                         String s = stringBooleanEntry.getKey();
 
                         //add
@@ -184,15 +183,15 @@ public class Writer {
 
     }
 
-    public HashMap<FileInfo, Map<String, Boolean>> clone(HashMap<FileInfo, Map<String, Boolean>> toClone) {
-        HashMap<FileInfo, Map<String, Boolean>> result = new HashMap<FileInfo, Map<String, Boolean>>();
+    public HashMap<FileInfo, Map<String, TranslationInfo>> clone(HashMap<FileInfo, Map<String, TranslationInfo>> toClone) {
+        HashMap<FileInfo, Map<String, TranslationInfo>> result = new HashMap<FileInfo, Map<String, TranslationInfo>>();
 
 
-        for (Map.Entry<FileInfo, Map<String, Boolean>> fileInfoMapEntry : toClone.entrySet()) {
-            Map<String, Boolean> c = new HashMap<String, Boolean>();
+        for (Map.Entry<FileInfo, Map<String, TranslationInfo>> fileInfoMapEntry : toClone.entrySet()) {
+            Map<String, TranslationInfo> c = new HashMap<String, TranslationInfo>();
 
-            for (Map.Entry<String, Boolean> stringBooleanEntry : fileInfoMapEntry.getValue().entrySet()) {
-                c.put(new String(stringBooleanEntry.getKey()), new Boolean(stringBooleanEntry.getValue()));
+            for (Map.Entry<String, TranslationInfo> stringBooleanEntry : fileInfoMapEntry.getValue().entrySet()) {
+                c.put(new String(stringBooleanEntry.getKey()), new TranslationInfo(stringBooleanEntry.getValue()));
             }
 
             result.put(new FileInfo(fileInfoMapEntry.getKey()), c);

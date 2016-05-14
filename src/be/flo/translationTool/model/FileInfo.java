@@ -53,14 +53,13 @@ public class FileInfo {
 
         FileInfo fileInfo = (FileInfo) o;
 
-        if (name != null ? !name.equals(fileInfo.name) : fileInfo.name != null) return false;
+        return name.equals(fileInfo.name);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return name.hashCode();
     }
 
     @Override
