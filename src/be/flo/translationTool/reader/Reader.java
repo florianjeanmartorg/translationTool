@@ -1,7 +1,7 @@
 package be.flo.translationTool.reader;
 
+import be.flo.translationTool.SourceEnum;
 import be.flo.translationTool.model.FileInfo;
-import be.flo.translationTool.model.SourceInfo;
 import be.flo.translationTool.model.SourceTypeEnum;
 import be.flo.translationTool.model.TranslationInfo;
 import be.flo.translationTool.util.Const;
@@ -29,12 +29,12 @@ public class Reader {
         return keyMap;
     }
 
-    public void browse(SourceInfo source) {
+    public void browse(SourceEnum source) {
 
 
-        for (String target : source.getTargetDirectories()) {
+        for (String target : Const.TARGET_DIRECTORIES) {
 
-            File file = new File(target);
+            File file = new File(source.getPath()+target);
             try {
                 search(file, target, source);
             } catch (Exception e) {
@@ -48,7 +48,7 @@ public class Reader {
 
     }
 
-    private void search(File file, String target, SourceInfo sourceInfo) throws Exception {
+    private void search(File file, String target, SourceEnum sourceInfo) throws Exception {
         if (file.isDirectory()) {
             for (File child : file.listFiles()) {
                 search(child, target, sourceInfo);
@@ -57,64 +57,62 @@ public class Reader {
             String[] fileElements = file.getName().split("\\.");
             String type = fileElements[fileElements.length - 1];
 
-            for (Map.Entry<String, SourceTypeEnum[]> stringEntry : sourceInfo.getFileType().entrySet()) {
-                if(stringEntry.getKey().contains(type)){
+            for (Map.Entry<String, SourceTypeEnum[]> stringEntry : Const.FILE_TYPE.entrySet()) {
+                if (stringEntry.getKey().contains(type)) {
 
                     if (Const.DEBUG) {
                         System.out.println("-- File read : " + file.getAbsolutePath());
                     }
-                    fileAnalyse(file, type, target,stringEntry.getValue());
+                    fileAnalyse(sourceInfo, file, type, target, stringEntry.getValue());
                 }
             }
         }
     }
 
-    private void fileAnalyse(File file, String type, String target, SourceTypeEnum[] sourceTypes) throws Exception {
+    private void fileAnalyse(SourceEnum sourceInfo, File file, String type, String target, SourceTypeEnum[] sourceTypes) throws Exception {
         String content = FileUtil.getString(file);
 
         //file name
         FileInfo fileInfo = new FileInfo(file.getAbsolutePath().replace(target, ""), getFileDescription(file, content, type));
 
         //catch translation by regex
-        for (String expectedRegex : Const.EXPECTED_REGEXS) {
-            Pattern pattern = Pattern.compile(expectedRegex);
+        String expectedRegex = Const.KEY_REGEX;
+        Pattern pattern = Pattern.compile(expectedRegex);
 
-            Matcher matcher = pattern.matcher(content);
+        Matcher matcher = pattern.matcher(content);
 
-            //loop all translations for this regex
-            while (matcher.find()) {
+        //loop all translations for this regex
+        while (matcher.find()) {
 
-                //the translation key
-                String key = matcher.group();
+            //the translation key
+            String key = matcher.group();
 
-                if (Const.DEBUG) {
-                    //print the key into the log
-                    System.out.println("---- Translation found : " + key);
-                }
+            if (Const.DEBUG) {
+                //print the key into the log
+                System.out.println("---- Translation found : " + key);
+            }
 
-                //check if the key was already catched by test the listAllKey
-                if (!listAllKey.contains(key)) {
-                    //if not, add the key into the keyMap
+            //check if the key was already catched by test the listAllKey
+            if (!listAllKey.contains(key)) {
+                //if not, add the key into the keyMap
 
-                    //if this is a generic translation, associate to the generic info file
-                    if (key.contains("--.generic")) {
-                        if (!keyMap.containsKey(genericInfo)) {
-                            keyMap.put(genericInfo, new HashMap<String, TranslationInfo>());
-                        }
-                        keyMap.get(genericInfo).put(key, new TranslationInfo(true,sourceTypes));
-                    } else {
-                        //if not generic, add the fileInfo if needed and add the key into
-                        if (!keyMap.containsKey(fileInfo)) {
-                            keyMap.put(fileInfo, new HashMap<String, TranslationInfo>());
-                        }
-
-                        listAllKey.add(key);
-                        keyMap.get(fileInfo).put(key, new TranslationInfo(true,sourceTypes));
+                //if this is a generic translation, associate to the generic info file
+                if (key.contains("--.generic")) {
+                    if (!keyMap.containsKey(genericInfo)) {
+                        keyMap.put(genericInfo, new HashMap<String, TranslationInfo>());
                     }
+                    keyMap.get(genericInfo).put(key, new TranslationInfo(true, sourceTypes));
+                } else {
+                    //if not generic, add the fileInfo if needed and add the key into
+                    if (!keyMap.containsKey(fileInfo)) {
+                        keyMap.put(fileInfo, new HashMap<String, TranslationInfo>());
+                    }
+
+                    listAllKey.add(key);
+                    keyMap.get(fileInfo).put(key, new TranslationInfo(true, sourceTypes));
                 }
             }
         }
-
     }
 
     private String getFileDescription(File file, String content, String type) {

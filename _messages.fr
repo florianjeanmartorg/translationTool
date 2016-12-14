@@ -1,0 +1,363 @@
+
+#################
+## ADMIN MESSAGES
+#################
+
+#### error messages
+--.error.wrongAuthorization=Vous n''avez pas la permission pour faire cette opération
+--.error.unknownDevice=Faille de sécurité : cet appareil n''a pas été reconnu correctement
+--.error.notConnected=Vous n''êtes pas connecté
+--.error.fatalError=Une erreur fatale est arrivée : {0}.
+--.error.jsonConversionError=Json conversion error
+--.error.validation.select=Séléctionnez un choix
+--.error.validation.email=Adresse email invalide
+--.error.validation.password=Entre 6 et 18 lettres, chiffres ou -_%
+--.error.validation.notNull=Le champs {9} ne peut être vide
+--.error.validation.size=Le champs {9} doit faire entre {0} et {1} charactères.
+--.error.validation.pattern=Doit respecter le pattern suivant : {0}
+--.error.validation.fieldError=Champs {0} : {1}
+--.error.account.emailUnknown=Cette adresse email est inconnue
+--.error.wrongPasswordOrLogin=Adress email ou mot de passe incorrecte
+--.error.vta.wrong=Le numéro de TVA ne peut être validé.
+--.error.account.archived=Votre compte a été désactivé. Si vous désirez le réactiver, veuillez contacter un administrateur.
+--.error.picture.wrongSize=La taille de votre photo doit faire au minimum {0} pixels de large et {1} pixels de haut
+--.error.picture.wrongSizeX=La taille de votre photo doit faire au minimum {0} pixels de large
+--.error.picture.wrongSizeY=La taille de votre photo doit faire au minimum {0} pixels de haut
+--.error.importExcel.unableToOpen=Impossible d''ouvrir ce fichier Excel
+--.error.clientToken=Une erreur est survenue lors de la connexion au système de payement
+--.error.excel.errorTitleColumn=Messages d''erreurs
+--.error.address.wrongOldPassword=L''ancien mot de passe n''est pas valide
+--.email.forgotPassword.subject=Mot de passe perdu
+--.email.forgotPassword.body=Bonjour {0}<br/><br/>Voici votre nouveau mot de passe : <span class="password">{1}</span>
+--.error.storedFile.notFound=Le fichier {0} n''a pas été trouvé
+
+### frontend message
+--.generic.no=Non
+--.generic.yes=Oui
+--.registration.form.yourEmail=Votre adresse email
+--.generic.yourPassword=Votre mot de passe
+--.generic.save=Sauver
+--.generic.oldPassword=Ancien mot de passe
+--.changePasswordModal.newPassword=Nouveau mot de passe
+--.generic.repeatPassword=Répétez votre mot de passe
+--.generic.validation.repeatPassword=Les deux mots de passe ne sont pas les mêmes
+--.confirmModal.title=Confirmez-vous cette action?
+--.generic.cancel=Annuler
+--.changeEmailModal.email=Entrer votre adresse email
+--.forgotPassword.success=Un email vous a été envoyé avec votre nouveau mot de passe
+--.forgotPassword.title=Mot de passe oublié ?
+--.forgotPassword.desc=Entrez votre adresse email et un nouveau mot de passe vous sera envoyé
+--.generic.submit=Soumettre
+--.login.flash.success=Vous êtes maintenant connecté
+--.generic.error.complete.fields=Le formulaire contient des erreurs
+--.loginModal.desc=Veuillez vous connectez avec votre compte administrateur
+--.login.form.button.forgotPassword.action=Mot de passe oublié ?
+--.generic.login.btn=Connexion
+--.generic.validation.email=Merci d''entrer une adresse email valide
+--.generic.numberOnly=Uniquement un numéro
+--.field.dateSimple.to=Le
+--.field.dateSimple.at=à
+--.generic.comment=Commentaires
+--.importExcel.file=Importer votre fichier Excel
+--.import.title=Import depuis un fichier Excel
+--.import.desc=Aide : Importer votre fichier Excel, puis indiquez à quelles colonnes corespondent chaques données.
+--.import.firstRow=Première ligne à prendre en compte
+--.error.dirFile=Importez un fichier pour poursuivre
+--.error.import.wrongType=Seuls les fichiers des types suivants sont acceptés : {0}
+--.import.success=Les données ont été correctement importées
+--.import.error=Le fichier Excel contient des erreurs. Veuillez télécharger le document annoté et effectuer les corrections en fonction des messages d''erreur
+--.import.resultFile.download=Télécherger le document annoté
+--.dirFile.download.treatment=Traitement...
+
+##  be/flo/project/dto/ChangePasswordDTO.java
+--.changePasswordModal.title=Changer de mot de passe
+
+##  generic
+--.generic.firstname=Prénom
+--.generic.lastname=Nom
+--.generic.male=Homme
+--.generic.gender=Sexe
+--.generic.female=Femme
+--.generic.validation.size=Entre {0} et {1} charactères
+--.generic.logout=Déconnexion
+--.generic.validation.password=Entre 6 et 18 lettres, numéro ou _- %
+--.generic.email=Email adresse
+--.generic.name=Nom
+--.generic.description=Description
+--.generic.edit=Editer
+--.generic.valid=Validation
+--.generic.street=Rue
+--.generic.zip=Code postal
+--.generic.city=Ville
+--.generic.country=Pays
+#--.generic.validate=Valider
+#--.generic.back=Retour
+#--.generic.loading=Chargement...
+--.generic.favoriteLanguage=Langue
+--.generic.phoneNumber=Numéro de téléphone
+#--.form.address.field.country=Pays
+--.generic.vta=Numéro de TVA
+--.generic.optional=Optionnel
+--.generic.none=Aucun(e)
+--.dirFileMultiple.btn.addFile=Ajouter un fichier
+--.error.validation.fileFiledMultiple=Télécharger au moins un document
+--.error.validation.emptyField=Ce champs ne peut être vide
+--.generic.address=generic.address
+
+#################
+## SPECIFIC MESSAGES
+#################
+
+
+
+
+################
+
+#factory
+--.error.factory.notFound=L''usine avec l''id {0} n''a pas été trouvée
+--.error.factory.nameAlreadyUsed=Une usine porte déjà le nom de {0} dans votre organisation. Veuillez en choisir un autre
+--.error.import.columnNotFound=La colonne {0} n''a pas été trouvée
+--.error.account.notFound=L''utilisateur {0} n''a pas été trouvé
+--.factory.archive.confirmation=Êtes-vous sûr de vouloir archiver cette/ces usine(s)? Elle(s) n''apparaîtra/apparaîtrons plus. Vous pourrez la/les déarchiver à tout moment.
+--.factory.unarchive.confirmation=Êtes-vous sûr de vouloir désarchiver cette/ces usine(s)?
+--.factory.create.modal.title=Créer une nouvelle usine
+--.factory.edit.modal.title=Editer une usine
+--.factory.column.import.name.FACTORY_NAME=Nom de l''usine
+--.factory.column.import.name.FACTORY_ADDRESS_STREET=rue
+--.factory.column.import.name.FACTORY_ADDRESS_ZIP=Code postal
+--.factory.column.import.name.FACTORY_ADDRESS_CITY=Ville
+--.factory.column.import.name.FACTORY_ADDRESS_COUNTRY=Pays
+--.factory.column.import.name.FACTORY_PHONE_NUMBER=Numéro de téléphone
+--.error.file.notExists=Fichier {0} non trouvé
+--.error.factory.archived.productionNotFinish=Certaines productions de l''usine {0} ne sont pas encore finies. Veuillez les cloturer avant d''archiver cette usine.
+--.page.factory.list.title=Mes usines
+
+#customer
+--.error.customer.notFound=Le client {0} n''a pas été trouvé
+--.error.customer.nameAlreadyUsed=Un autre de vos clients porte déjà ce nom. Veuillez en choisir un autre
+--.error.customerEvent.notFound=L''action client {0} n''a pas été trouvé
+#--.customer.status.NONE=Aucun devis
+#--.customer.status.NEGOCIATION=Devis en cours de négociation
+#--.customer.status.EXECUTION=Devis en cours d''execution
+--.customers.archive.confirmation=Êtes-vous sûr de vouloir archiver ce(s) client(s)? Il(s) n''apparaîtra/apparaîtrons plus. Vous pourrez le(s) déarchiver à tout moment.
+--.customers.unarchive.confirmation=Êtes-vous sûr de vouloir Désarchiver ce(s) client(s)?
+--.customer.create.modal.title=Créer un nouveau client
+--.customer.edit.modal.title=Editer un client
+--.error.validation.customer.vta=Veuillez introduire un numéro de TVA valide
+--.customer.vta.desc=Format de type BExxxx.xxx.xxx
+--.customer.column.import.name.CUSTOMER_NAME=Nom du client
+--.customer.column.import.name.CUSTOMER_VTA=Numéro de TVA
+--.customer.column.import.name.CUSTOMER_EMAIL=Adresse email
+--.customer.column.import.name.CUSTOMER_ADDRESS_STREET=rue
+--.customer.column.import.name.CUSTOMER_ADDRESS_ZIP=Code postal
+--.customer.column.import.name.CUSTOMER_ADDRESS_CITY=Ville
+--.customer.column.import.name.CUSTOMER_ADDRESS_COUNTRY=Pays
+--.customer.column.import.name.CUSTOMER_PHONE_NUMBER=Numéro de téléphone
+--.error.vta.notExists=Ce numéro de TVA n''existe pas
+--.error.customer.archived.quoteNotExecuted=Il y a encore des devis en cours d''execution concernant le client {0}. Veuillez les cloturer avant d''archiver ce client.
+
+#customerEvent
+#--.customerEvent.status.TODO=A faire
+#--.customerEvent.status.DONE=Fait
+#--.customerEvent.status.CANCELLED=Annulé
+--.customerEvent.remove.confirmation=Êtes-vous sûr de vouloir supprimer cet action ?
+--.customerEvent.type=Type
+--.customerEvent.eventDate=Date
+--.customerEvent.comment=Commentaire
+--.customerEvent.excutor=Responsable
+--.customerEvent.modal.create=Créer un évènement client
+--.customerEvent.modal.edit=Editer un évènement client
+--.customerEvent.executor.validation=Veuillez choisir un utilisateur dans la liste déroulante
+--.customerEvent.eventDate.validation=Veuillez choisir une date
+
+# product
+--.error.product.notExists=Ce produit n''existe pas
+--.product.column.import.name.PRODUCT_NAME=Nom
+--.product.column.import.name.PRODUCT_DESC=Description
+--.product.column.import.name.PRODUCT_PRICE_BY_UNIT=Prix par unité
+--.error.product.nameAlreadyUsed=Un autre de vos produits porte déjà ce nom. Veuillez en choisir un autre
+--.error.product.archived=Ce produit est archivé
+--.error.factory.archived=Cette usine est archivée
+--.product.create.modal.title=Créer un produit
+--.product.edit.modal.title=Editer un produit
+--.product.archive.confirmation=Êtes-vous sûr de vouloir archiver ce(s) produit(s)? Il(s) n''apparaîtra/apparaîtrons plus. Vous pourrez le(s) déarchiver à tout moment.
+--.product.unarchive.confirmation=Êtes-vous sûr de vouloir Désarchiver ce(s) produit(s)?
+#--.error.production.ConstraintViolation=Il existe déjà une production de ce produit dans la même usine
+--.product.priceByUnit=Prix unitaire
+--.error.production.dateError=Les dates sont inexactes
+--.error.product.archived.quoteNotExecuted=Il y a encore des devis en cours d''execution concernant le produit {0}. Veuillez les cloturer avant d''archiver ce produit.
+--.error.product.archived.productionNotFinish=Certaines productions concernent encore le produit {0}. Veuillez les cloturer avant d''archiver ce produit.
+
+#quote
+--.quote.form.price=Prix
+--.quote.form.quantity=Quantité
+--.quote.create.modal.title=Créer un devis
+--.quote.edit.modal.title=Editer un devis
+--.error.quote.notFound=Le devis {0} n''a pas été trouvé
+--.error.customer.archive=Ce client est archivé
+--.error.quote.alreadyInExecution=Ce devis est déjà en cours d''éxecution et ne peut plus être modifié
+--.quote.form.product=Produit
+--.quote.form.reference=Référence
+--.quote.cancel.confirmation=Êtes vous sûr de vouloir supprimer ce devis? Cette action est définitive
+--.quote.form.customer=Client
+#--.quote.status.WAIT_VALIDATION=En attente de validation
+#--.quote.status.VALIDATED=Validé
+#--.quote.status.IN_EXECUTION=En cours d''execution
+#--.quote.status.EXECUTED=Executé
+--.quote.form.storedFiles=Documents
+--.error.quote.alreadyExists=Un devis avec la même référence existe déjà
+--.quote.confirmDelivery.confirmation=Confirmez-vous la livraison pour ce devis ?
+--.error.quote.status=Ce devis n''a pas le bon statut.
+--.error.quote.status.validation.wrongStartDate=La date de démarrage du devis ne doit pas être passée
+--.quote.status.startDate=Date de début d''execution
+--.quote.validation.title=Valider un devis
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/MainCtrl.coffee
+--.completeInvitation.modal.title=Inviter un nouvel utilisateur
+--.invitation.finalization.success=Un email a été envoyé à l''adresse email indiquée
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/profile.jade
+#--.customer.profile.personalInformation=Informations personnelles
+--.page.profile=page.profile
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/form/account/template.jade
+--.registration.accept.condition=Accepter les conditions
+
+##  /home/flo/myProject/demo2/be/startDev/framework/service/impl/EmailServiceImpl.java
+--.site.name=Démo
+
+##  /home/flo/myProject/demo2/be/demo/server/util/message/EmailMessageEnum.java
+--.email.registration.subject=Nouveau compte
+--.email.registration.body=Bienvenu {0}<br/><br/>vous venez de commencer à utiliser Démo.
+--.email.invitation.body=Bonjour,<br/><br/>Vous avez été invité comme utilisateur de démo.<br/><br/>Pour valider votre compte, veuilliez cliquer sur le lien ci-dessous et suivre les inscructions<br/><br/> <a href="{0}">{0}</a>
+--.email.invitation.subject=Invitation
+
+##  /home/flo/myProject/demo2/be/demo/server/util/message/ErrorMessageEnum.java
+--.error.emailAlreadyUsed=Un compte avec cette adresse email existe déjà
+--.error.wrongAddress=Cette adresse n''a pas pû être confirmée par Google Map. Veuillez en introduire une correcte pour poursuivre
+--.error.invitationCredentials=Votre invitation n''est pas valide
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/form/account/AccountFormCtrl.coffee
+--.registration.form.repeatPassword=Répéter votre mot de passe
+--.registration.form.password=Choisissez un mot de passe
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/component/headerBar/template.jade
+--.welcome.myProfile=Profile
+--.project.name=Démo
+--.project.subtitle=Un super outil pour gérer votre entreprise
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/customerDetails.jade
+--.customer.event.noAction=Pas d''évènement
+--.customer.price=Prix
+--.customer.status=Statut
+--.customerEvent.executor=responsable
+--.customer.event=Evènements
+--.customerEvent.date=Date
+--.customer.customer=Client
+--.customer.page.baskToList=Retour à la liste des clients
+--.customer.quantity=quantité
+--.customer.tva=TVA
+--.customer.event.Action=Actions
+--.customer.reference=Référence
+--.page.generalData=Informations générales
+--.page.generalData.edit=Editer les informations
+--.customer.product=Produit
+--.customerEvent.status=Statut
+--.customer.status.=customer.status.
+--.quote.none=quote.none
+--.quote.create=quote.create
+
+
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/customer.jade
+--.page.archivedData.unarchiveAction=Dé-archiver
+--.page.action.importFromExcel=Importer depuis un Excel
+--.page.action.archive=Archiver
+--.page.archivedData.advertisement=Ces données sont archivées
+--.customer.action.add=Ajouter un client
+--.page.action.unarchive=Dé-archiver
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/QuoteCtrl.coffee
+--.quote.action.displayExecutedDelivery=Afficher les devis déjà executés
+--.quote.action.cancel=Annuler
+--.quote.action.validate=Valider
+--.quote.action.confirmDelivery=Confirmer la livraison
+--.quote.reference=quote.reference
+--.quote.customer=quote.customer
+--.quote.product=quote.product
+--.quote.price=quote.price
+--.quote.status=quote.status
+--.quote.quantity=quote.quantity
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/form/quote/template.jade
+--.quote.profit=Profit
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/component/menu/template.jade
+--.page.customer=Client
+--.page.product=Produit
+--.page.stock=Stock
+--.page.welcome=Accueil
+--.page.administration=Administration
+--.page.quote=Devis
+--.page.factory=Usine
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/CustomerCtrl.coffee
+--.grid.menu.displayArchived=Afficher / masquer les données archivées
+--.page.action.details=Détails...
+--.page.action.edit=Editer...
+
+
+
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/productDetails.jade
+--.quote.status.=quote.status.
+--.product.product=product.product
+--.product.page.baskToList=product.page.baskToList
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/factory.jade
+--.factory.action.add=factory.action.add
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/CustomerDetailsCtrl.coffee
+--.customerEvent.status.=customerEvent.status.
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/quote.jade
+--.quote.action.add=quote.action.add
+--.page.quote.list.title=page.quote.list.title
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/product.jade
+--.page.product.list.title=page.product.list.title
+--.product.action.add=product.action.add
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/FactoryCtrl.coffee
+#--.page.action.unedit=page.action.unedit
+--.factory.products=factory.products
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/factoryDetails.jade
+--.factory.page.baskToList=factory.page.baskToList
+--.production.product=production.product
+--.production.endDate=production.endDate
+--.production.startDate=production.startDate
+--.factory.factory=factory.factory
+--.production.totalProduction=production.totalProduction
+--.production.title=production.title
+--.production.create=production.create
+--.production.dailyProduction=production.dailyProduction
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/quoteDetails.jade
+--.quote.page.baskToList=quote.page.baskToList
+--.quote.quote=quote.quote
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/welcome.jade
+#--.welcome.subtitle=welcome.subtitle
+
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/ProductCtrl.coffee
+--.product.dailyProduction=product.dailyProduction
+--.product.unitPrice=product.unitPrice
+
+

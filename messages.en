@@ -1,0 +1,352 @@
+
+#################
+## ADMIN MESSAGES
+#################
+
+#### error messages
+--.error.wrongAuthorization=You don't have the permission for this operation
+--.error.unknownDevice=SECURITY FAIL : this device is not identified
+--.error.notConnected=You''re not connected
+--.error.fatalError=Fatal error : {0}.
+--.error.jsonConversionError=Json conversion error
+--.error.validation.select=Select a choice
+--.error.validation.email=Email address not valid
+--.error.validation.password=Between 6 et 18 letters, numbers or -_%
+--.error.validation.notNull=The field {9} cannot be empty
+--.error.validation.size=The field {9} must be between {0} and {1} characters.
+--.error.validation.pattern=Must respect the following pattern : {0}
+--.error.validation.fieldError=Field {0} : {1}
+--.error.account.emailUnknown=This address email is not known
+--.error.wrongPasswordOrLogin=Email address or password not known
+--.error.vta.wrong=VTA number cannot be validated
+--.error.account.archived=Your account was unactivated. Please contact your administrator
+--.error.picture.wrongSize=The size of your picture must be at least {0} pixels wide and {1} pixels high.
+--.error.picture.wrongSizeX=The size of your picture must be at least {0} pixels wide
+--.error.picture.wrongSizeY=The size of your picture must be at least {0} pixels high
+--.error.importExcel.unableToOpen=Impossible to open this Excel file
+--.error.clientToken=An error was occurred during the connection of the payment system.
+--.error.excel.errorTitleColumn=Error messages
+--.error.address.wrongOldPassword=The old password is not valid
+--.email.forgotPassword.subject=Password forgot
+--.email.forgotPassword.body=Hello {0}<br/><br/>this is the new password : <span class="password">{1}</span>
+--.error.storedFile.notFound=The file {0} was not found
+
+### frontend message
+--.generic.no=No
+--.generic.yes=Yes
+--.registration.form.yourEmail=Your email address
+--.generic.yourPassword=your password
+--.generic.save=Save
+--.generic.oldPassword=Old password
+--.changePasswordModal.newPassword=New password
+--.generic.repeatPassword=Repeat your password
+--.generic.validation.repeatPassword=Both passwords are differences
+--.confirmModal.title=Confirm this action ?
+--.generic.cancel=Cancel
+--.changeEmailModal.email=Type your email address
+--.forgotPassword.success=Email was send you with new password
+--.forgotPassword.title=Forgot password ?
+--.forgotPassword.desc=Type your email address and a new password will be send you
+--.generic.submit=Submit
+--.login.flash.success=You''re now logged
+--.generic.error.complete.fields=Form contains errors
+--.loginModal.desc=Please log you with your administrator account
+--.login.form.button.forgotPassword.action=Forgot password ?
+--.generic.login.btn=Connection
+--.generic.validation.email=Please type a valid email address
+--.generic.numberOnly=Only number
+--.field.dateSimple.to=From
+--.field.dateSimple.at=To
+--.generic.comment=Comments
+--.importExcel.file=Import your Excel file
+--.import.title=Import from an Excel file
+--.import.desc=Help : select your Excel file to import, next indicate the columns for each data required
+--.import.firstRow=First row with data
+--.error.dirFile=Import a file to continue
+--.error.import.wrongType=Only files with following types are accepted : {0}
+--.import.success=Data was not correctly imported
+--.import.error=Excel file contains error. Please upload the annotated file and fix error before retry
+--.import.resultFile.download=Upload annotated file
+--.dirFile.download.treatment=Treatment...
+
+##  be/flo/project/dto/ChangePasswordDTO.java
+--.changePasswordModal.title=Change password
+
+##  generic
+--.generic.firstname=First name
+--.generic.lastname=Last name
+--.generic.male=Man
+--.generic.gender=Gender
+--.generic.female=Female
+--.generic.validation.size=Between {0} and {1} characters
+--.generic.logout=Logout
+--.generic.validation.password=Between 6 et 18 letters, numbers or -_%
+--.generic.email=Address email
+--.generic.name=Name
+--.generic.description=Description
+--.generic.edit=Edit
+--.generic.valid=Validation
+--.generic.street=Street
+--.generic.zip=Zip code
+--.generic.city=City
+--.generic.country=Country
+#--.generic.validate=Valid
+#--.generic.back=Back
+#--.generic.loading=Loading...
+--.generic.favoriteLanguage=Language
+--.generic.phoneNumber=Phone number
+#--.form.address.field.country=Country
+--.generic.vta=VTA number
+--.generic.optional=Optional
+--.generic.none=None
+--.dirFileMultiple.btn.addFile=Add a file
+--.error.validation.fileFiledMultiple=Download at least one file
+--.error.validation.emptyField=This file cannot be empty
+--.generic.address=generic.address
+
+#################
+## SPECIFIC MESSAGES
+#################
+
+
+
+
+################
+--.error.factory.notFound=Factory with id {0} was not found
+--.error.factory.nameAlreadyUsed=A factory with the name {0} already exists. Please choose another one
+--.error.import.columnNotFound=row {0} was not found
+--.error.account.notFound=User {0} was not found
+--.factory.archive.confirmation=Are you sure you want to archive this/these factory/ies? Their will not be available anymore, but you can unarchive their at anytime
+--.factory.unarchive.confirmation=Are you sure you want to unarchive this/these factory/ies?
+--.factory.create.modal.title=Create a new factory
+--.factory.edit.modal.title=Edit a factory
+--.factory.column.import.name.FACTORY_NAME=Name of the factory
+--.factory.column.import.name.FACTORY_ADDRESS_STREET=Street
+--.factory.column.import.name.FACTORY_ADDRESS_ZIP=Zip code
+--.factory.column.import.name.FACTORY_ADDRESS_CITY=City
+--.factory.column.import.name.FACTORY_ADDRESS_COUNTRY=Country
+--.factory.column.import.name.FACTORY_PHONE_NUMBER=Phone number
+--.error.file.notExists=File {0} not found
+--.error.factory.archived.productionNotFinish=Some production of the factory {0} are not finish yet. Please close them before archive this factory.
+
+#customer
+--.error.customer.notFound=Customer {0} was not found
+--.error.customer.nameAlreadyUsed=Another customer with the same name already exists. Please choose another one
+--.error.customerEvent.notFound=Customer event {0} was not found
+#--.customer.status.NONE=No quote
+#--.customer.status.NEGOCIATION=Quote in negotiation
+#--.customer.status.EXECUTION=Quote in execution
+--.customers.archive.confirmation=Are you sure you want to archive this/these customer(s)? Their will not be available anymore, but you can unarchive their at anytime
+--.customers.unarchive.confirmation=Are you sure you want to unarchive this/these customer(s)?
+--.customer.create.modal.title=Create a new customer
+--.customer.edit.modal.title=edit customer
+--.error.validation.customer.vta=Please type a valid VTA number
+--.customer.vta.desc=Format expected BExxxx.xxx.xxx
+--.customer.column.import.name.CUSTOMER_NAME=Customer name
+--.customer.column.import.name.CUSTOMER_VTA=TVA numver
+--.customer.column.import.name.CUSTOMER_EMAIL=Email address
+--.customer.column.import.name.CUSTOMER_ADDRESS_STREET=Street
+--.customer.column.import.name.CUSTOMER_ADDRESS_ZIP=Zip code
+--.customer.column.import.name.CUSTOMER_ADDRESS_CITY=City
+--.customer.column.import.name.CUSTOMER_ADDRESS_COUNTRY=Country
+--.customer.column.import.name.CUSTOMER_PHONE_NUMBER=Phone number
+--.error.vta.notExists=This VTA number cannot be validated
+--.error.customer.archived.quoteNotExecuted=There are still quotes not totally executed for the customer {0}. Please executes their before archive this customer
+
+#customerEvent
+#--.customerEvent.status.TODO=To do
+#--.customerEvent.status.DONE=Done
+#--.customerEvent.status.CANCELLED=Cancelled
+--.customerEvent.remove.confirmation=Are you sure you want to delete this action?
+--.customerEvent.type=Type
+--.customerEvent.eventDate=Date
+--.customerEvent.comment=Comments
+--.customerEvent.excutor=Responsable
+--.customerEvent.modal.create=Create a customer event
+--.customerEvent.modal.edit=Edit a customer event
+--.customerEvent.executor.validation=Select a user in the list
+--.customerEvent.eventDate.validation=Select a date
+
+# product
+--.error.product.notExists=This product {0} doesn't exist
+--.product.column.import.name.PRODUCT_NAME=Name
+--.product.column.import.name.PRODUCT_DESC=Description
+--.product.column.import.name.PRODUCT_PRICE_BY_UNIT=Price by unit
+--.error.product.nameAlreadyUsed=Another product with the same name already exists. Please choose another one
+--.error.product.archived=This product is archived
+--.error.factory.archived=This factory is archived
+--.product.create.modal.title=Create a product
+--.product.edit.modal.title=Edit a produit
+--.product.archive.confirmation=Are you sure you want to archive this/these product(s)? Their will not be available anymore, but you can unarchive their at anytime
+--.product.unarchive.confirmation=Are you sure you want to unarchive this/these product(s)?
+--.product.priceByUnit=Unit price
+--.error.production.dateError=Date are incompatible
+--.error.product.archived.quoteNotExecuted=There are still quotes not totally executed for the product {0}. Please executes their before archive this customer
+--.error.product.archived.productionNotFinish=There are still production not finish for the product {0}. Please executes their before archive this customer
+
+#quote
+--.quote.form.price=Price
+--.quote.form.quantity=Quantity
+--.quote.create.modal.title=Create a quote
+--.quote.edit.modal.title=Edit a quote
+--.error.quote.notFound=quote {0} was not found
+--.error.customer.archive=This customer is archived
+--.error.quote.alreadyInExecution=This quote is still in execution and cannot be edited
+--.quote.form.product=Product
+--.quote.form.reference=Reference
+--.quote.cancel.confirmation=Are you sure you want to delete this quote ? This action cannot be cancelled
+--.quote.form.customer=Customer
+#--.quote.status.WAIT_VALIDATION=Wait validation
+#--.quote.status.VALIDATED=Validated
+#--.quote.status.IN_EXECUTION=Wait execution
+#--.quote.status.EXECUTED=Executed
+--.quote.form.storedFiles=Files
+--.error.quote.alreadyExists=Another quote used the same reference. Please choose another one
+--.quote.confirmDelivery.confirmation=Do you confirm the delivery for this quote?
+--.error.quote.status=this quote doesn''t have the correct status
+--.error.quote.status.validation.wrongStartDate=The start date cannot be passed
+--.quote.status.startDate=Start date of the quote
+--.quote.validation.title=Valid a quote
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/MainCtrl.coffee
+--.completeInvitation.modal.title=Invit new user
+--.invitation.finalization.success=A email was send to the submitted email address
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/profile.jade
+#--.customer.profile.personalInformation=Personal data
+--.page.profile=page.profile
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/form/account/template.jade
+--.registration.accept.condition=Accept conditions
+
+##  /home/flo/myProject/demo2/be/startDev/framework/service/impl/EmailServiceImpl.java
+--.site.name=Demo
+
+##  /home/flo/myProject/demo2/be/demo/server/util/message/EmailMessageEnum.java
+--.email.registration.subject=New account
+--.email.registration.body=Welcome {0}<br/><br/>You just start to use Demo!
+--.email.invitation.body=Welcome ,<br/><br/>Your are invited as a user of Demo.<br/><br/>to validated your account, please click on the following link and follow instructions<br/><br/> <a href="{0}">{0}</a>
+--.email.invitation.subject=Invitation
+
+##  /home/flo/myProject/demo2/be/demo/server/util/message/ErrorMessageEnum.java
+--.error.emailAlreadyUsed=An account with this email address already exists
+--.error.wrongAddress=This postal address cannot be validated by Google Map. Please get a correct ont
+--.error.invitationCredentials=Your invitation is not valid
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/form/account/AccountFormCtrl.coffee
+--.registration.form.repeatPassword=Repeat your password
+--.registration.form.password=Select a password
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/component/headerBar/template.jade
+--.welcome.myProfile=Profil
+--.project.name=Demo
+--.project.subtitle=A great tool to manage your company
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/customerDetails.jade
+--.customer.event.noAction=No action
+--.customer.price=Price
+--.customer.status=Status
+--.customerEvent.executor=Responsible
+--.customer.event=Event
+--.customerEvent.date=Date
+--.customer.customer=Customer
+--.customer.page.baskToList=Back to customer list
+--.customer.quantity=quantity
+--.customer.tva=VTA
+--.customer.event.Action=Action
+--.customer.reference=reference
+--.page.generalData=General information
+--.page.generalData.edit=Edit
+--.customer.product=Product
+--.customerEvent.status=Status
+--.customer.status.=customer.status.
+--.quote.none=quote.none
+--.quote.create=quote.create
+
+
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/customer.jade
+--.page.archivedData.unarchiveAction=Unarchived
+--.page.action.importFromExcel=Import from Excel file
+--.page.action.archive=Archive
+--.page.archivedData.advertisement=These data was archives
+--.customer.action.add=Add a customer
+--.page.action.unarchive=Unarchive
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/QuoteCtrl.coffee
+--.quote.action.displayExecutedDelivery=Display quotes already executed
+--.quote.action.cancel=Cancel
+--.quote.action.validate=Validate
+--.quote.action.confirmDelivery=Confirm delivery
+--.quote.reference=quote.reference
+--.quote.customer=quote.customer
+--.quote.product=quote.product
+--.quote.price=quote.price
+--.quote.status=quote.status
+--.quote.quantity=quote.quantity
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/form/quote/template.jade
+--.quote.profit=Profit
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/component/menu/template.jade
+--.page.customer=Customer
+--.page.product=Product
+--.page.stock=Stock
+--.page.welcome=welcome
+--.page.administration=Administration
+--.page.quote=Quote
+--.page.factory=Factory
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/CustomerCtrl.coffee
+--.grid.menu.displayArchived=Display / mask archived data
+--.page.action.details=Details...
+--.page.action.edit=Edit...
+
+
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/productDetails.jade
+--.quote.status.=quote.status.
+--.product.product=product.product
+--.product.page.baskToList=product.page.baskToList
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/factory.jade
+--.page.factory.list.title=page.factory.list.title
+--.factory.action.add=factory.action.add
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/CustomerDetailsCtrl.coffee
+--.customerEvent.status.=customerEvent.status.
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/ProductCtrl.coffee
+--.product.dailyProduction=product.dailyProduction
+--.product.unitPrice=product.unitPrice
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/quote.jade
+--.quote.action.add=quote.action.add
+--.page.quote.list.title=page.quote.list.title
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/product.jade
+--.page.product.list.title=page.product.list.title
+--.product.action.add=product.action.add
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/controller/FactoryCtrl.coffee
+--.factory.products=factory.products
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/factoryDetails.jade
+--.factory.page.baskToList=factory.page.baskToList
+--.production.product=production.product
+--.production.endDate=production.endDate
+--.production.startDate=production.startDate
+--.factory.factory=factory.factory
+--.production.totalProduction=production.totalProduction
+--.production.title=production.title
+--.production.create=production.create
+--.production.dailyProduction=production.dailyProduction
+
+##  /home/flo/myProject/demo2/assets/js/be/demo/frontend/view/quoteDetails.jade
+--.quote.page.baskToList=quote.page.baskToList
+--.quote.quote=quote.quote
+
+

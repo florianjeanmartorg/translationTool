@@ -1,16 +1,14 @@
 package be.flo.translationTool.writer;
 
+import be.flo.translationTool.SourceEnum;
 import be.flo.translationTool.model.FileInfo;
-import be.flo.translationTool.model.SourceInfo;
 import be.flo.translationTool.model.TranslationInfo;
 import be.flo.translationTool.util.Const;
 import be.flo.translationTool.util.FileUtil;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,17 +17,17 @@ import java.util.regex.Pattern;
  */
 public class Writer {
 
-    public void write(SourceInfo sourceInfo,HashMap<FileInfo, Map<String, TranslationInfo>> map) throws Exception {
+    public void write(SourceEnum sourceInfo, HashMap<FileInfo, Map<String, TranslationInfo>> map) throws Exception {
 
         //load translation file
-        File file = new File(sourceInfo.getTranslationDirectory());
+        File file = new File(sourceInfo.getPath() + Const.TRANSLATION_DIRECTORIES);
 
         if (file.isDirectory()) {
             for (File file1 : file.listFiles()) {
-                Matcher matcher = sourceInfo.getTranslationPattern().matcher(file1.getName());
+                Matcher matcher = Pattern.compile(Const.TRANSLATION_FILE_PATTERN).matcher(file1.getName());
                 if (matcher.find()) {
                     //add
-                    completeFile(file1, clone(map));
+                    completeFile(sourceInfo, file1, clone(map), map, matcher.group(1));
                     //comment deleted key
 
                     //savef
@@ -37,21 +35,24 @@ public class Writer {
             }
 
         } else {
-            throw new Exception(sourceInfo.getTranslationDirectory() + " is not a directory");
+            throw new Exception(sourceInfo.getPath() + Const.TRANSLATION_DIRECTORIES + " is not a directory");
         }
     }
 
-    private void completeFile(File file, HashMap<FileInfo, Map<String, TranslationInfo>> map) throws Exception {
+    private void completeFile(SourceEnum sourceInfo,
+                              File file,
+                              HashMap<FileInfo, Map<String, TranslationInfo>> map,
+                              HashMap<FileInfo, Map<String, TranslationInfo>> map2,
+                              String lang) throws Exception {
 
         String content = FileUtil.getString(file);
-
-        Pattern pattern = Pattern.compile("(\\n|^)((#)? *(--\\.[a-zA-Z0-9._-]+))=(.+)");
 
         Matcher matcher1 = Pattern.compile(".*\n").matcher(content);
 
         Map<String, TranslationInfo> newKey = new HashMap<String, TranslationInfo>();
 
         String previousLine = "";
+        int counter = 0;
 
         while (matcher1.find()) {
 
@@ -88,17 +89,10 @@ public class Writer {
                 }
             }
 
-            if(line.contains("--.email.invitation.body")){
-                int i = 0;
-            }
-
-            Matcher matcher2 = pattern.matcher(line);
+            Matcher matcher2 = Pattern.compile(Const.CATCH_TRANSLATION_CONTENT).matcher(line);
             if (matcher2.find()) {
                 String key = matcher2.group(4);
-
-                if(key.equals("--.email.invitation.body")){
-                    int i = 0;
-                }
+                String translation = matcher2.group(5);
 
                 //find equivalent in new keys
                 boolean founded = false;
@@ -109,14 +103,26 @@ public class Writer {
                         if ((matcher2.group(3) != null && matcher2.group(3).length() > 0)) {
                             content = content.replace(matcher2.group(), matcher2.group().replace("#", ""));
                         }
+
+                        //add translation content
+                        for (Map.Entry<FileInfo, Map<String, TranslationInfo>> fileInfoMapEntry : map2.entrySet()) {
+                            if (fileInfoMapEntry.getValue().containsKey(key)) {
+                                fileInfoMapEntry.getValue().get(key).addContent(lang, translation);
+                                fileInfoMapEntry.getValue().get(key).setPosition(counter);
+                            }
+                        }
+
                         break;
                     }
                 }
+
                 //disactive
-                if (founded == false && (matcher2.group(3) == null || matcher2.group(3).length() == 0)) {
+                if (!founded && (matcher2.group(3) == null || matcher2.group(3).length() == 0)) {
                     content = content.replace(key, "#" + key);
                 }
+
             }
+            counter++;
 
         }
 
@@ -145,41 +151,7 @@ public class Writer {
             }
         }
 
-
-//        for (Map.Entry<FileInfo, Set<String>> fileInfoListEntry : map.entrySet()) {
-//            boolean first = true;
-//            for (String s : fileInfoListEntry.getValue()) {
-//                if (!checkList.containsKey(s)) {
-//                    //add
-//                    if (first) {
-//                        first = false;
-//                        String info = "\n##  " + fileInfoListEntry.getKey().getName();
-//                        if (fileInfoListEntry.getKey().getDesc() != null) {
-//                            info += " (" + fileInfoListEntry.getKey().getDesc() + ")";
-//                        }
-//                        info += "\n";
-//
-//                        content += info;
-//                    }
-//                    content += s + "=" + s.replace("--.", "") + "\n";
-//                } else if (checkList.get(s).equals(KeyStatus.NOT_ACTIVED)) {
-//                    checkList.put(s, KeyStatus.TO_REACTIVE);
-//                } else {
-//                    checkList.put(s, KeyStatus.FOUNDED);
-//                }
-//
-//            }
-//        }
-//
-//        for (Map.Entry<String, KeyStatus> stringKeyStatusEntry : checkList.entrySet()) {
-//            if (stringKeyStatusEntry.getValue().equals(KeyStatus.TO_REACTIVE)) {
-//                content = content.replace("//" + stringKeyStatusEntry.getKey(), stringKeyStatusEntry.getKey());
-//            } else if (stringKeyStatusEntry.getValue().equals(KeyStatus.NOT_FOUND)) {
-//
-//            }
-//        }
-
-        FileUtil.save(content + "\n\n", "/tmp/" + file.getName(), true);
+        FileUtil.save(content + "\n\n", sourceInfo.getPath()+Const.TRANSLATION_DIRECTORIES+"/_" + file.getName(), true);
 
     }
 

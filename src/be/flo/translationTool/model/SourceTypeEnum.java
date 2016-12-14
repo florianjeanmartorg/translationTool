@@ -8,5 +8,8 @@ import java.util.List;
  */
 public enum SourceTypeEnum {
 
-    ANDROID,SITE,SERVER,IOS
+
+
+    ANDROID,SITE,SERVER,IOS;
+
 }

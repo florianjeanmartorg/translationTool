@@ -1,15 +1,22 @@
 package be.flo.translationTool.model;
 
+import be.flo.translationTool.SourceEnum;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by flo on 14/05/16.
  */
-public class TranslationInfo {
+public class TranslationInfo implements Comparable<TranslationInfo> {
 
-    private boolean founded = false;
-    private boolean website = false;
-    private boolean server  = false;
-    private boolean android = false;
-    private boolean ios     = false;
+    private boolean              founded     = false;
+    private List<SourceTypeEnum> sourceTypes = new ArrayList<SourceTypeEnum>();
+    //key : language, value : contents
+    private Map<String, String>  contents    = new HashMap<String, String>();
+    private int position;
 
     public TranslationInfo() {
     }
@@ -18,38 +25,28 @@ public class TranslationInfo {
         this.founded = founded;
         for (SourceTypeEnum sourceType : sourceTypes) {
 
-            switch (sourceType) {
-                case ANDROID:
-                    this.android = true;
-                    break;
-                case SITE:
-                    this.website = true;
-                    break;
-                case SERVER:
-                    this.server = true;
-                    break;
-                case IOS:
-                    this.ios = true;
-                    break;
-            }
+            this.sourceTypes.add(sourceType);
+        }
+    }
+
+    public TranslationInfo(boolean founded, SourceTypeEnum[] sourceTypes, int position) {
+        this.founded = founded;
+        this.position = position;
+        for (SourceTypeEnum sourceType : sourceTypes) {
+
+            this.sourceTypes.add(sourceType);
         }
     }
 
     public TranslationInfo(TranslationInfo value) {
+        for (SourceTypeEnum sourceType : value.sourceTypes) {
+            this.sourceTypes.add(sourceType);
+        }
+
         this.founded = value.founded;
-        this.website = value.website;
-        this.server = value.server;
-        this.android = value.android;
-        this.ios = value.ios;
-
-    }
-
-    public boolean isAndroid() {
-        return android;
-    }
-
-    public void setAndroid(boolean android) {
-        this.android = android;
+        for (Map.Entry<String, String> entry : value.contents.entrySet()) {
+            this.contents.put(entry.getKey(), entry.getValue());
+        }
     }
 
     public boolean isFounded() {
@@ -60,27 +57,79 @@ public class TranslationInfo {
         this.founded = founded;
     }
 
-    public boolean isIos() {
-        return ios;
+    public List<SourceTypeEnum> getSourceTypes() {
+        return sourceTypes;
     }
 
-    public void setIos(boolean ios) {
-        this.ios = ios;
+    public void addContent(String lang, String translation) {
+        if (!this.contents.containsKey(lang)) {
+            this.contents.put(lang, translation);
+        }
     }
 
-    public boolean isServer() {
-        return server;
+    public Map<String, String> getContents() {
+        return contents;
     }
 
-    public void setServer(boolean server) {
-        this.server = server;
+    public boolean testAviability(SourceEnum sourceEnum) {
+        for (SourceTypeEnum typeEnum : this.sourceTypes) {
+            switch (typeEnum) {
+                case ANDROID:
+                    if(sourceEnum.getAndroidPath()!=null){
+                        return true;
+                    }
+                    break;
+                case SITE:
+                    if(sourceEnum.getPath()!=null){
+                        return true;
+                    }
+                    break;
+                case SERVER:
+                    if(sourceEnum.getPath()!=null){
+                        return true;
+                    }
+                    break;
+                case IOS:
+                    if(sourceEnum.getIosPath()!=null){
+                        return true;
+                    }
+                    break;
+            }
+        }
+        return false;
     }
 
-    public boolean isWebsite() {
-        return website;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
-    public void setWebsite(boolean website) {
-        this.website = website;
+    public int getPosition() {
+        return position;
+    }
+
+    @Override
+    public int compareTo(TranslationInfo o) {
+        if (this.position == o.position) {
+            return 0;
+        }
+        return (this.position > o.position) ? 1 : -1;
+    }
+
+    public void fusion(TranslationInfo translationInfo) {
+
+        //position and founded not relevant
+
+        for (SourceTypeEnum sourceTypeEnum : translationInfo.getSourceTypes()) {
+            if (!this.sourceTypes.contains(sourceTypeEnum)) {
+                this.sourceTypes.add(sourceTypeEnum);
+            }
+        }
+        for (Map.Entry<String, String> entry : translationInfo.contents.entrySet()) {
+            if (!this.contents.containsKey(entry.getKey())) {
+                this.contents.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+
     }
 }
